@@ -33,3 +33,10 @@ var account_balance;
 
 // Set total purchase cost
 var total_cost;
+
+// Function for calculating the tax
+const tax_calc = function(phone_price, tax_rate) {
+  var tax_total;
+  tax_total = phone_price * tax_rate;
+  return tax_total;
+};
