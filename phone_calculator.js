@@ -15,3 +15,21 @@ for formatting the price with a "$" and rounding to two decimal places.
 * Bonus Challenge: Try to incorporate input into this program, perhaps with the prompt(..) covered in "Input"
 earlier.You may prompt the user for their bank account balance, for example. Have fun and be creative!
 **/
+
+// Set phone price
+const phone_price = 500;
+
+// Set accessory price
+const accessory_price = 50;
+
+// Set tax rate
+const tax_rate = 0.13;
+
+// Set spending threshold
+const spending_threshold = 800;
+
+// Set bank account balance
+var account_balance;
+
+// Set total purchase cost
+var total_cost;
