@@ -40,3 +40,10 @@ const tax_calc = function(phone_price, tax_rate) {
   tax_total = phone_price * tax_rate;
   return tax_total;
 };
+
+//function for formatting the price with a "$" and rounding to two decimal places
+const formatting = function(total_cost) {
+  console.log('$' + total_cost.toFixed(2));
+};
+
+= phone_price + tax_total(phone_price, tax_rate);
