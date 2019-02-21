@@ -18,35 +18,57 @@ for formatting the price with a "$" and rounding to two decimal places.
 // Set phone price
 const phone_price = 500;
 
+// Set phone cost with tax
+var phone_cost_with_tax = 0;
+
 // Set accessory price
 const accessory_price = 50;
+
+// Set accessory cost with tax
+var accessory_cost_with_tax = 0;
 
 // Set tax rate
 const tax_rate = 0.13;
 
 // Set spending threshold
-const spending_threshold = 800;
+const spending_threshold = 2500;
 
 // Set bank account balance
-var account_balance = 2000;
+var account_balance = 4000;
 
 // Set total purchase cost
-var total_cost;
+var total_cost = 0;
 
 // Function for calculating the tax
-function tax_calc(phone_price, tax_rate) {
-  return phone_price * tax_rate;
+function tax_calc(price, tax_rate) {
+  return price * tax_rate;
 };
 
 // Function for formatting the price with a "$" and rounding to two decimal places
-function formatting(total_cost) {
-  return '$' + total_cost.toFixed(2);
+function formatting(cost) {
+  return '$' + cost.toFixed(2);
 };
 
 // Calculate total cost of phone purchase
-total_cost = phone_price + tax_calc(phone_price, tax_rate);
+// phone_cost_with_tax = phone_price + tax_calc(phone_price, tax_rate);
+// formatting(phone_cost_with_tax);
+// console.log(formatting(phone_cost_with_tax));
+
+// total_cost = phone_cost_with_tax + accessory_cost_with_tax;
 
 // Purchase phone until you run out of balance
-while (total_cost < account_balance) {
-  total_cost = total_cost + total_cost;
-}
+if (total_cost < account_balance) {
+  if (total_cost < spending_threshold) {
+    phone_cost_with_tax = phone_price + tax_calc(phone_price, tax_rate);
+    accessory_cost_with_tax = accessory_price + tax_calc(accessory_price, tax_rate);
+    phone_cost_with_tax += phone_cost_with_tax;
+    accessory_cost_with_tax += accessory_cost_with_tax;
+    total_cost = phone_cost_with_tax + accessory_cost_with_tax;
+  };
+  console.log(total_cost, phone_cost_with_tax, accessory_cost_with_tax);
+};
+
+// Purchase accessory until it reaches spending threshold
+// While(accessory_price < spending_threshold) {
+//   accessory_price
+// }
