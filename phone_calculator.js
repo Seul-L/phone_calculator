@@ -18,57 +18,42 @@ for formatting the price with a "$" and rounding to two decimal places.
 // Set phone price
 const phone_price = 500;
 
-// Set phone cost with tax
-var phone_cost_with_tax = 0;
-
 // Set accessory price
 const accessory_price = 50;
-
-// Set accessory cost with tax
-var accessory_cost_with_tax = 0;
 
 // Set tax rate
 const tax_rate = 0.13;
 
 // Set spending threshold
-const spending_threshold = 2500;
+const spending_threshold = 100;
 
 // Set bank account balance
-var account_balance = 4000;
+var account_balance = 2000;
 
 // Set total purchase cost
 var total_cost = 0;
 
+// Set total tax cost
+var total_tax = 0;
+
 // Function for calculating the tax
 function tax_calc(price, tax_rate) {
   return price * tax_rate;
-};
+}
 
 // Function for formatting the price with a "$" and rounding to two decimal places
 function formatting(cost) {
   return '$' + cost.toFixed(2);
-};
+}
 
-// Calculate total cost of phone purchase
-// phone_cost_with_tax = phone_price + tax_calc(phone_price, tax_rate);
-// formatting(phone_cost_with_tax);
-// console.log(formatting(phone_cost_with_tax));
+// Purchase phone and accessory until you run out of balance and within the spending threshold
+while (account_balance > spending_threshold) {
+  total_tax = tax_calc(phone_price + accessory_price, tax_rate);
+  total_cost = phone_price + accessory_price + total_tax;
 
-// total_cost = phone_cost_with_tax + accessory_cost_with_tax;
+  if (total_cost > spending_threshold) break;
 
-// Purchase phone until you run out of balance
-if (total_cost < account_balance) {
-  if (total_cost < spending_threshold) {
-    phone_cost_with_tax = phone_price + tax_calc(phone_price, tax_rate);
-    accessory_cost_with_tax = accessory_price + tax_calc(accessory_price, tax_rate);
-    phone_cost_with_tax += phone_cost_with_tax;
-    accessory_cost_with_tax += accessory_cost_with_tax;
-    total_cost = phone_cost_with_tax + accessory_cost_with_tax;
-  };
-  console.log(total_cost, phone_cost_with_tax, accessory_cost_with_tax);
-};
+    account_balance = account_balance - total_cost;
+    console.log(formatting(total_cost), formatting(account_balance));
+}
 
-// Purchase accessory until it reaches spending threshold
-// While(accessory_price < spending_threshold) {
-//   accessory_price
-// }
